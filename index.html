@@ -12,38 +12,40 @@
             --btn-func: #475569; --btn-func-hover: #64748b; --btn-func-text: #cbd5e1; --btn-clear: #ef4444;
             --btn-clear-hover: #dc2626; --btn-eq: #10b981; --btn-eq-hover: #059669; --menu-bg: #1e293b;
             --menu-border: #334155; --menu-item-hover: #334155;
+            --btn-header-bg: #334155; --btn-header-hover: #475569;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; user-select: none; }
+        /* Современные округлые шрифты, встроенные в операционную систему */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Ubuntu', 'Cantarell', 'Segoe UI', sans-serif; user-select: none; }
         body { width: 100vw; height: 100vh; overflow: hidden; background: #000000; position: relative; }
         #snowCanvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; display: none; }
         #snowCanvas.active { display: block; }
         .app-wrapper { display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; background: var(--bg-body); padding: 16px; position: relative; z-index: 2; }
-        .calculator { position: relative; z-index: 3; background: var(--bg-calc); padding: 20px; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.4); width: 100%; max-width: 340px; display: flex; flex-direction: column; justify-content: center; }
+        .calculator { position: relative; z-index: 3; background: var(--bg-calc); padding: 20px; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.4); width: 100%; max-width: 340px; display: flex; flex-direction: column; justify-content: center; transition: background 0.3s; }
         .calc-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; position: relative; height: 40px; width: 100%; gap: 10px; }
         .theme-menu-container { position: relative; flex-shrink: 0; }
-        .theme-btn, .lang-btn { background: var(--btn-num); color: var(--text-main); border: 1px solid var(--menu-border); padding: 8px 14px; border-radius: 10px; cursor: pointer; font-weight: 500; font-size: 0.85rem; transition: background 0.2s; white-space: nowrap; }
-        .theme-btn:hover, .lang-btn:hover { background: var(--btn-num-hover); }
+        .theme-btn, .lang-btn { background: var(--btn-header-bg); color: #ffffff; border: 1px solid var(--menu-border); padding: 8px 14px; border-radius: 10px; cursor: pointer; font-weight: 700; font-size: 0.85rem; transition: background 0.2s, color 0.2s; white-space: nowrap; }
+        .theme-btn:hover, .lang-btn:hover { background: var(--btn-header-hover); }
         .lang-btn { flex-shrink: 0; width: auto; min-width: 45px; text-align: center; }
         .theme-dropdown { display: none; position: absolute; left: 0; top: 38px; background: var(--menu-bg); border: 1px solid var(--menu-border); border-radius: 10px; min-width: 165px; box-shadow: 0 8px 24px rgba(0,0,0,0.3); overflow: hidden; z-index: 10; }
         .theme-dropdown.show { display: block; }
-        .theme-item { padding: 10px 14px; color: var(--text-main); cursor: pointer; font-size: 0.85rem; text-align: left; width: 100%; background: none; border: none; }
+        .theme-item { padding: 10px 14px; color: var(--text-main); cursor: pointer; font-size: 0.85rem; text-align: left; width: 100%; background: none; border: none; font-weight: 700; }
         .theme-item:hover { background: var(--menu-item-hover); }
         .color-picker-panel { display: none; align-items: center; justify-content: space-around; gap: 4px; background: var(--btn-num); padding: 8px 14px; border-top: 1px solid var(--menu-border); width: 100%; height: auto; }
         .color-picker-panel.active { display: flex; }
         .color-group { display: flex; align-items: center; gap: 4px; }
-        .color-group label { color: var(--text-main); font-size: 0.75rem; font-weight: 600; }
+        .color-group label { color: var(--text-main); font-size: 0.75rem; font-weight: 700; }
         input[type="color"] { border: none; width: 22px; height: 22px; border-radius: 50%; cursor: pointer; background: none; padding: 0; }
-        .display { background: var(--bg-display); color: var(--text-main); text-align: right; padding: 16px; border-radius: 16px; margin-bottom: 16px; min-height: 90px; display: flex; flex-direction: column; justify-content: flex-end; word-wrap: break-word; word-break: break-all; }
+        .display { background: var(--bg-display); color: var(--text-main); text-align: right; padding: 16px; border-radius: 16px; margin-bottom: 16px; min-height: 90px; display: flex; flex-direction: column; justify-content: flex-end; word-wrap: break-word; word-break: break-all; transition: background 0.3s; }
         .display .previous { color: var(--text-prev); font-size: 1rem; margin-bottom: 4px; min-height: 1.2rem; }
-        .display .current { font-size: 2rem; font-weight: 600; }
+        .display .current { font-size: 2.4rem; font-weight: 700; letter-spacing: -0.5px; }
         .buttons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; width: 100%; }
-        button { border: none; padding: 16px 0; width: 100%; border-radius: 14px; font-size: 1.25rem; font-weight: 600; cursor: pointer; text-align: center; transition: background 0.1s, transform 0.05s; }
+        button { border: none; padding: 16px 0; width: 100%; border-radius: 14px; font-size: 1.45rem; font-weight: 700; cursor: pointer; text-align: center; transition: background 0.2s, transform 0.05s, color 0.2s; }
         button:active { transform: scale(0.92); }
         .number { background: var(--btn-num); color: var(--btn-num-text); }
         .number:hover { background: var(--btn-num-hover); }
         .operator { background: var(--btn-op); color: var(--btn-op-text); }
         .operator:hover { background: var(--btn-op-hover); }
-        .function { background: var(--btn-func); color: var(--btn-func-text); font-size: 1.1rem; }
+        .function { background: var(--btn-func); color: var(--btn-func-text); font-size: 1.25rem; }
         .function:hover { background: var(--btn-func-hover); }
         .clear { background: var(--btn-clear); color: #ffffff; }
         .clear:hover { background: var(--btn-clear-hover); }
@@ -161,33 +163,92 @@
         document.addEventListener('click', () => {
             themeDropdown.classList.remove('show');
         });
-
         function setTheme(theme) {
             pickerPanel.classList.remove('active');
-            document.getElementById('snowCanvas').classList.remove('active');
+            const canvas = document.getElementById('snowCanvas');
+            canvas.classList.remove('active');
+            canvas.style.zIndex = "1";
             
             if (theme === 'dark') {
                 document.documentElement.style.setProperty('--bg-calc', '#1e293b');
+                document.documentElement.style.setProperty('--bg-display', '#0f172a');
                 document.documentElement.style.setProperty('--text-main', '#f8fafc');
+                document.documentElement.style.setProperty('--btn-num', '#334155');
+                document.documentElement.style.setProperty('--btn-num-hover', '#475569');
+                document.documentElement.style.setProperty('--btn-num-text', '#f8fafc');
+                document.documentElement.style.setProperty('--btn-op', '#f59e0b');
+                document.documentElement.style.setProperty('--btn-op-hover', '#d97706');
+                document.documentElement.style.setProperty('--btn-func', '#475569');
+                document.documentElement.style.setProperty('--btn-func-hover', '#64748b');
+                document.documentElement.style.setProperty('--btn-header-bg', '#334155');
+                document.documentElement.style.setProperty('--btn-header-hover', '#475569');
             } else if (theme === 'light') {
                 document.documentElement.style.setProperty('--bg-calc', '#ffffff');
+                document.documentElement.style.setProperty('--bg-display', '#f1f5f9');
                 document.documentElement.style.setProperty('--text-main', '#0f172a');
+                document.documentElement.style.setProperty('--btn-num', '#e2e8f0');
+                document.documentElement.style.setProperty('--btn-num-hover', '#cbd5e1');
+                document.documentElement.style.setProperty('--btn-num-text', '#0f172a');
+                document.documentElement.style.setProperty('--btn-op', '#3b82f6');
+                document.documentElement.style.setProperty('--btn-op-hover', '#2563eb');
+                document.documentElement.style.setProperty('--btn-func', '#cbd5e1');
+                document.documentElement.style.setProperty('--btn-func-hover', '#94a3b8');
+                document.documentElement.style.setProperty('--btn-header-bg', '#cbd5e1');
+                document.documentElement.style.setProperty('--btn-header-hover', '#94a3b8');
             } else if (theme === 'cyberpunk') {
                 document.documentElement.style.setProperty('--bg-calc', '#000000');
+                document.documentElement.style.setProperty('--bg-display', '#111111');
                 document.documentElement.style.setProperty('--text-main', '#00ff66');
+                document.documentElement.style.setProperty('--btn-num', '#222222');
+                document.documentElement.style.setProperty('--btn-num-hover', '#333333');
+                document.documentElement.style.setProperty('--btn-num-text', '#00ff66');
+                document.documentElement.style.setProperty('--btn-op', '#ff0055');
+                document.documentElement.style.setProperty('--btn-op-hover', '#d30046');
+                document.documentElement.style.setProperty('--btn-func', '#222222');
+                document.documentElement.style.setProperty('--btn-func-hover', '#333333');
+                document.documentElement.style.setProperty('--btn-header-bg', '#222222');
+                document.documentElement.style.setProperty('--btn-header-hover', '#333333');
             } else if (theme === 'purple') {
                 document.documentElement.style.setProperty('--bg-calc', '#2e1065');
+                document.documentElement.style.setProperty('--bg-display', '#4c1d95');
                 document.documentElement.style.setProperty('--text-main', '#f472b6');
+                document.documentElement.style.setProperty('--btn-num', '#6b21a8');
+                document.documentElement.style.setProperty('--btn-num-hover', '#7e22ce');
+                document.documentElement.style.setProperty('--btn-num-text', '#ffffff');
+                document.documentElement.style.setProperty('--btn-op', '#db2777');
+                document.documentElement.style.setProperty('--btn-op-hover', '#be185d');
+                document.documentElement.style.setProperty('--btn-func', '#6b21a8');
+                document.documentElement.style.setProperty('--btn-func-hover', '#7e22ce');
+                document.documentElement.style.setProperty('--btn-header-bg', '#6b21a8');
+                document.documentElement.style.setProperty('--btn-header-hover', '#7e22ce');
             } else if (theme === 'winter') {
-                document.documentElement.style.setProperty('--bg-calc', '#e2e8f0');
+                document.documentElement.style.setProperty('--bg-calc', '#cbd5e1');
+                document.documentElement.style.setProperty('--bg-display', '#94a3b8');
                 document.documentElement.style.setProperty('--text-main', '#1e3a8a');
-                document.getElementById('snowCanvas').classList.add('active');
+                document.documentElement.style.setProperty('--btn-num', '#e2e8f0');
+                document.documentElement.style.setProperty('--btn-num-hover', '#ffffff');
+                document.documentElement.style.setProperty('--btn-num-text', '#1e3a8a');
+                document.documentElement.style.setProperty('--btn-op', '#2563eb');
+                document.documentElement.style.setProperty('--btn-op-hover', '#1d4ed8');
+                document.documentElement.style.setProperty('--btn-func', '#94a3b8');
+                document.documentElement.style.setProperty('--btn-func-hover', '#64748b');
+                document.documentElement.style.setProperty('--btn-header-bg', '#1e3a8a');
+                document.documentElement.style.setProperty('--btn-header-hover', '#2563eb');
+                
+                canvas.style.zIndex = "999";
+                canvas.classList.add('active');
                 initSnow();
             } else if (theme === 'custom') {
                 pickerPanel.classList.add('active');
             }
         }
 
+        document.getElementById('color1').addEventListener('input', (e) => {
+            document.documentElement.style.setProperty('--bg-calc', e.target.value);
+        });
+        document.getElementById('color2').addEventListener('input', (e) => {
+            document.documentElement.style.setProperty('--text-main', e.target.value);
+        });
         let currentInput = '';
         let previousInput = '';
         let operation = null;
@@ -200,7 +261,12 @@
         }
 
         function appendOperator(op) {
-            if (currentInput === '') return;
+            if (currentInput === '' && previousInput === '') return;
+            if (currentInput === '' && previousInput !== '') {
+                operation = op;
+                previousText.innerText = `${previousInput} ${op}`;
+                return;
+            }
             if (previousInput !== '') calculate();
             operation = op;
             previousInput = currentInput;
@@ -225,25 +291,46 @@
         function calculate() {
             let result;
             const prev = parseFloat(previousInput);
-            const current = parseFloat(currentInput);
+            const current = parseFloat(currentInput || currentText.innerText);
             if (isNaN(prev) || isNaN(current)) return;
 
             switch (operation) {
                 case '+': result = prev + current; break;
                 case '-': result = prev - current; break;
                 case '*': result = prev * current; break;
-                case '/': result = current === 0 ? 'Ошибка' : prev / current; break;
+                case '/': result = current === 0 ? 'Error' : prev / current; break;
                 case '%': result = (prev * current) / 100; break;
                 default: return;
             }
 
-            currentInput = result;
+            currentInput = result.toString();
             operation = null;
             previousInput = '';
             currentText.innerText = result;
             previousText.innerText = '';
         }
 
+        // Логика поддержки ввода с физической клавиатуры
+        document.addEventListener('keydown', (e) => {
+            if ((e.key >= '0' && e.key <= '9') || e.key === '.') {
+                appendNumber(e.key);
+            }
+            if (e.key === '+' || e.key === '-' || e.key === '*' || e.key === '/' || e.key === '%') {
+                appendOperator(e.key);
+            }
+            if (e.key === 'Enter' || e.key === '=') {
+                e.preventDefault(); 
+                calculate();
+            }
+            if (e.key === 'Backspace') {
+                deleteNumber();
+            }
+            if (e.key === 'Escape') {
+                clearDisplay();
+            }
+        });
+
+        let snowAnimationId = null;
         function initSnow() {
             const canvas = document.getElementById('snowCanvas');
             const ctx = canvas.getContext('2d');
@@ -258,9 +345,12 @@
             }));
 
             function draw() {
-                if (!canvas.classList.contains('active')) return;
+                if (!canvas.classList.contains('active')) {
+                    cancelAnimationFrame(snowAnimationId);
+                    return;
+                }
                 ctx.clearRect(0, 0, width, height);
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
                 ctx.beginPath();
                 flakes.forEach(f => {
                     ctx.moveTo(f.x, f.y);
@@ -273,8 +363,9 @@
                     }
                 });
                 ctx.fill();
-                requestAnimationFrame(draw);
+                snowAnimationId = requestAnimationFrame(draw);
             }
+            
             window.addEventListener('resize', () => {
                 width = canvas.width = window.innerWidth;
                 height = canvas.height = window.innerHeight;
